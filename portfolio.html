@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>実績紹介 | 株式会社○○設計事務所</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #3498db;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .projects {
+            padding: 3rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+            color: #1a1a1a;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e9ecef;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #f1f3f4 0%, #e8eaf6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8e8e93;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .project-info {
+            padding: 1.8rem;
+        }
+        
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: #1a1a1a;
+            letter-spacing: -0.01em;
+        }
+        
+        .project-category {
+            color: #667eea;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .project-description {
+            color: #4a4a4a;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.7rem;
+            font-size: 0.88rem;
+            padding-top: 1rem;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #2a2a2a;
+        }
+        
+        .detail-value {
+            color: #5a5a5a;
+        }
+        
+        .stats {
+            background: #ffffff;
+            padding: 2.5rem 0;
+            margin: 0;
+            border-top: 1px solid #e9ecef;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .stat-label {
+            color: #5a5a5a;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">○○設計事務所</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">ホーム</a></li>
+                        <li><a href="#about">会社概要</a></li>
+                        <li><a href="#portfolio">実績紹介</a></li>
+                        <li><a href="#services">サービス</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>実績紹介</h1>
+            <p>私たちが手がけた建築プロジェクトをご紹介いたします</p>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">完成プロジェクト</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">設計実績年数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">お客様満足度</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">受賞歴</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects">
+        <div class="container">
+            <h2 class="section-title">主要プロジェクト</h2>
+            
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-image">プロジェクト画像</div>
+                    <div class="project-info">
+                        <h3 class="project-title">モダンオフィスビル</h3>
+                        <div class="project-category">商業建築</div>
+                        <p class="project-description">
+                            最新の環境技術を取り入れた、持続可能性を重視したオフィスビルの設計・監理を手がけました。
+                        </p>
+                        <div class="project-details">
+                            <div class="detail-label">完成年</div>
+                            <div class="detail-value">2023年</div>
+                            <div class="detail-label">延床面積</div>
+                            <div class="detail-value">5,200㎡</div>
+                            <div class="detail-label">構造</div>
+                            <div class="detail-value">鉄骨造</div>
+                            <div class="detail-label">階数</div>
+                            <div class="detail-value">地上8階</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">プロジェクト画像</div>
+                    <div class="project-info">
+                        <h3 class="project-title">都市型集合住宅</h3>
+                        <div class="project-category">住宅建築</div>
+                        <p class="project-description">
+                            都市部の限られた敷地を最大限活用し、居住性と利便性を両立させた集合住宅を設計しました。
+                        </p>
+                        <div class="project-details">
+                            <div class="detail-label">完成年</div>
+                            <div class="detail-value">2022年</div>
+                            <div class="detail-label">延床面積</div>
+                            <div class="detail-value">3,800㎡</div>
+                            <div class="detail-label">構造</div>
+                            <div class="detail-value">RC造</div>
+                            <div class="detail-label">階数</div>
+                            <div class="detail-value">地上12階</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">プロジェクト画像</div>
+                    <div class="project-info">
+                        <h3 class="project-title">文化複合施設</h3>
+                        <div class="project-category">公共建築</div>
+                        <p class="project-description">
+                            地域の文化活動の拠点となる複合施設。多世代が集える空間づくりを重視して設計しました。
+                        </p>
+                        <div class="project-details">
+                            <div class="detail-label">完成年</div>
+                            <div class="detail-value">2021年</div>
+                            <div class="detail-label">延床面積</div>
+                            <div class="detail-value">4,500㎡</div>
+                            <div class="detail-label">構造</div>
+                            <div class="detail-value">鉄骨造</div>
+                            <div class="detail-label">階数</div>
+                            <div class="detail-value">地上3階</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">プロジェクト画像</div>
+                    <div class="project-info">
+                        <h3 class="project-title">エコハウス</h3>
+                        <div class="project-category">住宅建築</div>
+                        <p class="project-description">
+                            自然エネルギーを最大限活用し、ゼロエネルギーハウスを実現した環境配慮型住宅です。
+                        </p>
+                        <div class="project-details">
+                            <div class="detail-label">完成年</div>
+                            <div class="detail-value">2023年</div>
+                            <div class="detail-label">延床面積</div>
+                            <div class="detail-value">120㎡</div>
+                            <div class="detail-label">構造</div>
+                            <div class="detail-value">木造</div>
+                            <div class="detail-label">階数</div>
+                            <div class="detail-value">地上2階</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">プロジェクト画像</div>
+                    <div class="project-info">
+                        <h3 class="project-title">商業施設リノベーション</h3>
+                        <div class="project-category">リノベーション</div>
+                        <p class="project-description">
+                            築30年の商業ビルを現代のニーズに合わせてリノベーション。歴史を活かしつつ新しい価値を創造しました。
+                        </p>
+                        <div class="project-details">
+                            <div class="detail-label">完成年</div>
+                            <div class="detail-value">2022年</div>
+                            <div class="detail-label">延床面積</div>
+                            <div class="detail-value">2,800㎡</div>
+                            <div class="detail-label">構造</div>
+                            <div class="detail-value">RC造</div>
+                            <div class="detail-label">階数</div>
+                            <div class="detail-value">地上6階</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">プロジェクト画像</div>
+                    <div class="project-info">
+                        <h3 class="project-title">高級老人ホーム</h3>
+                        <div class="project-category">福祉建築</div>
+                        <p class="project-description">
+                            高齢者の方々が安心して暮らせる環境づくりを重視し、バリアフリーと快適性を両立させました。
+                        </p>
+                        <div class="project-details">
+                            <div class="detail-label">完成年</div>
+                            <div class="detail-value">2021年</div>
+                            <div class="detail-label">延床面積</div>
+                            <div class="detail-value">6,200㎡</div>
+                            <div class="detail-label">構造</div>
+                            <div class="detail-value">RC造</div>
+                            <div class="detail-label">階数</div>
+                            <div class="detail-value">地上4階</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 株式会社文山設計事務所. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
