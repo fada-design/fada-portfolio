@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サービス | 文山建築設計事務所 | FUMIYAMA ARCHITECT'S DESIGN ASSOCIATES</title>
+    <style>
+        /* リセットCSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 基本設定 */
+        body {
+            font-family: 'Yu Gothic', 'YuGothic', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ヘッダー */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-main {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #2c5f7d;
+        }
+
+        /* ページヘッダー */
+        .page-header {
+            background: #f8f9fa;
+            padding: 12rem 2rem 6rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c5f7d;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* セクション */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c5f7d;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        /* サービス概要 */
+        .services-overview {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .services-overview p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        /* サービスグリッド */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #2c5f7d 0%, #4a8fb5 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(44, 95, 125, 0.15);
+            border-color: #e8f0f5;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            filter: grayscale(0.2);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c5f7d;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .service-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .service-features li {
+            color: #666;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .service-features li:before {
+            content: '•';
+            color: #2c5f7d;
+            position: absolute;
+            left: 0;
+        }
+
+        /* 設計の流れセクション */
+        .process-section {
+            background: #f8f9fa;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .process-step {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .process-step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(44, 95, 125, 0.12);
+            border-color: #e8f0f5;
+        }
+
+        .process-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #2c5f7d;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .process-step p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 専門分野セクション */
+        .expertise-section {
+            background: white;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .expertise-item {
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expertise-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #2c5f7d 0%, #4a8fb5 100%);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .expertise-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(44, 95, 125, 0.12);
+            border-color: #e8f0f5;
+        }
+
+        .expertise-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .expertise-item h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c5f7d;
+            margin-bottom: 0.5rem;
+        }
+
+        .expertise-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* フッター */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #aaa;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 8rem 2rem 4rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .services-grid,
+            .process-grid,
+            .expertise-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            section {
+                padding: 4rem 2rem;
+            }
+        }
+
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card,
+        .process-step,
+        .expertise-item {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder">
+        <!-- ヘッダーはJavaScriptで読み込まれます -->
+    </div>
+
+    <div class="page-header">
+        <h1 class="page-title">サービス</h1>
+        <p class="page-subtitle">Services</p>
+    </div>
+
+    <section>
+        <div class="container">
+            <div class="services-overview">
+                <p>文山建築設計事務所では、お客様のニーズに応じた多様な建築サービスを提供しています。</p>
+                <p>住宅から商業施設、公共建築まで、幅広い分野での豊富な経験と専門知識を活かし、お客様の理想を現実に変える建築設計を行います。</p>
+            </div>
+
+            <div id="services-summary" class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📐</div>
+                    <h3>建築設計</h3>
+                    <p>オフィスから商業施設、公共建築まで、あらゆる建築物の設計を手がけます。お客様のご要望をお伺いし、機能性と美しさを兼ね備えた建築を提案いたします。</p>
+                    <div class="service-features">
+                        <h4>主な対応分野</h4>
+                        <ul>
+                            <li>戸建住宅・集合住宅</li>
+                            <li>店舗・オフィス</li>
+                            <li>商業施設・複合施設</li>
+                            <li>公共建築・プラント施設</li>
+                            <li>工場・倉庫</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>監理</h3>
+                    <p>設計の意図を正確に工事に反映させるため、建築工事の監理を行います。近隣対応から検査対応まで、責任を持って対応いたします。</p>
+                    <div class="service-features">
+                        <h4>監理業務内容</h4>
+                        <ul>
+                            <li>施工図のチェック</li>
+                            <li>工程・安全管理のチェック</li>
+                            <li>各種検査対応</li>
+                            <li>設計変更対応</li>
+                            <li>協議とりまとめ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>建物調査・診断</h3>
+                    <p>既存建物の状態を専門的な視点で調査・診断します。建物の健康状態を把握し、適切な改修・修繕計画をご提案いたします。</p>
+                    <div class="service-features">
+                        <h4>調査・診断種別</h4>
+                        <ul>
+                            <li>法12条定期報告</li>
+                            <li>耐震診断</li>
+                            <li>劣化状況調査</li>
+                            <li>既存住宅状況調査</li>
+                            <li>改修計画立案</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3>リノベーション</h3>
+                    <p>既存建物の価値を最大限に活かしながら、現代のニーズに合わせた改修・リノベーション設計を行います。</p>
+                    <div class="service-features">
+                        <h4>対応範囲</h4>
+                        <ul>
+                            <li>商業施設改修</li>
+                            <li>耐震補強設計</li>
+                            <li>バリアフリー改修</li>
+                            <li>省エネ改修</li>
+                            <li>内外装リニューアル工事</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💭</div>
+                    <h3>コンサルティング</h3>
+                    <p>建築に関する専門的な知識を活かし、企画段階から運営まで総合的なコンサルティングを提供します。</p>
+                    <div class="service-features">
+                        <h4>計画業務</h4>
+                        <ul>
+                            <li>事業計画策定支援</li>
+                            <li>法規相談・行政手続き支援</li>
+                            <li>建築技術相談</li>
+                            <li>不動産活用相談</li>
+                            <li>建設コスト相談</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🌱</div>
+                    <h3>環境配慮設計</h3>
+                    <p>持続可能な社会の実現に向け、省エネルギーや環境負荷軽減を考慮した建築設計を提案します。</p>
+                    <div class="service-features">
+                        <h4>環境対策</h4>
+                        <ul>
+                            <li>省エネルギー設計</li>
+                            <li>自然建材の活用</li>
+                            <li>雨水利用システム</li>
+                            <li>サーカディアン照明設計</li>
+                            <li>緑化計画</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">設計の流れ</h2>
+            <p class="section-subtitle">Design Process</p>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <h4>初回相談</h4>
+                    <p>お客様のご要望やご予算、スケジュールなどをお聞かせいただき、プロジェクトの概要を把握します。</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <h4>現地調査・企画</h4>
+                    <p>建設予定地の調査を行い、法規制や周辺環境を考慮した基本企画を立案します。</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <h4>基本設計</h4>
+                    <p>建物の基本的な構成や外観デザインを決定し、設計図書を作成します。</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <h4>実施設計</h4>
+                    <p>工事に必要な詳細図面を作成し、仕様書や積算書類を準備します。</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">5</div>
+                    <h4>工事監理</h4>
+                    <p>設計図書に基づいて工事が適正に行われるよう、現場での監理業務を実施します。</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">6</div>
+                    <h4>竣工・引渡し</h4>
+                    <p>工事完了後の検査を行い、お客様への引渡しとアフターフォローを実施します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="expertise-section">
+        <div class="container">
+            <h2 class="section-title">専門分野</h2>
+            <p class="section-subtitle">Areas of Expertise</p>
+            <div class="expertise-grid">
+                               <div class="expertise-item">
+                    <h4>意匠設計</h4>
+                    <p>機能性と美しさを兼ね備えたデザインを追求し、お客様の理想を形にします。</p>
+                </div>
+                <div class="expertise-item">
+                    <h4>設備設計</h4>
+                    <p>快適で省エネルギーな建築設備の設計を行い、ランニングコストの削減に貢献します。</p>
+                </div>
+                 <div class="expertise-item">
+                    <h4>構造設計</h4>
+                    <p>安全性の高い構造設計を行います。木造から鉄筋コンクリート造まで幅広く対応可能です。</p>
+                </div>
+                <div class="expertise-item">
+                    <h4>テナント設計</h4>
+                    <p>ビル建築などのA・B・C工事設計にも対応し、多様なニーズにお答えます。</p>
+                </div>
+                <div class="expertise-item">
+                    <h4>BIM設計</h4>
+                    <p>最新のBIM技術を活用し、効率的で精度の高い設計を行います。</p>
+                </div>
+                <div class="expertise-item">
+                    <h4>特殊調査</h4>
+                    <p>最先端機器を使った調査が可能です。高所や狭小空間はドローン技術を使って点検します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder">
+        <!-- フッターはJavaScriptで読み込まれます -->
+    </div>
+    <script src="./js/content-loader.js"></script>
+</body>
+</html>

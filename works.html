@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>実績 | 文山建築設計事務所 | FUMIYAMA ARCHITECT'S DESIGN ASSOCIATES</title>
+    <style>
+        /* リセットCSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 基本設定 */
+        body {
+            font-family: 'Yu Gothic', 'YuGothic', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ヘッダー */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-main {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #2c5f7d;
+        }
+
+        /* ページヘッダー */
+        .page-header {
+            background: #f8f9fa;
+            padding: 12rem 2rem 6rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c5f7d;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* セクション */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c5f7d;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        /* 実績紹介 */
+        .works-intro {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .works-intro p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        /* フィルタータブ */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .filter-tab.active,
+        .filter-tab:hover {
+            background: #2c5f7d;
+            color: white;
+            border-color: #2c5f7d;
+        }
+
+        /* 実績グリッド */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        /* 見出しセクション専用スタイル */
+        .works-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .summary-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+            cursor: default;
+        }
+
+        .summary-image {
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+            background: #e9ecef;
+        }
+
+        .summary-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .summary-info {
+            padding: 1.5rem;
+        }
+
+        .summary-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c5f7d;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-info p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* 実績プロジェクト専用スタイル */
+        .work-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .work-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(44, 95, 125, 0.12);
+            border-color: #e8f0f5;
+        }
+
+        .work-image {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        .work-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .work-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .work-image-placeholder {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #adb5bd;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .work-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #2c5f7d 0%, #4a8fb5 100%);
+        }
+
+        .work-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(44, 95, 125, 0.9);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .work-info {
+            padding: 2rem;
+        }
+
+        .work-info h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c5f7d;
+            margin-bottom: 1rem;
+        }
+
+        .work-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .work-meta span {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .work-info p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .work-details h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .work-specs {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+
+        .work-spec {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 0.5rem;
+        }
+
+        .spec-label {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .spec-value {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* 実績数値セクション */
+        .stats-section {
+            background: #2c5f7d;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #bdc3c7;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-description {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+
+
+        /* フッター */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #aaa;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 8rem 2rem 4rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .works-grid,
+            .works-summary-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .stats-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            section {
+                padding: 4rem 2rem;
+            }
+
+            .filter-tabs {
+                gap: 0.5rem;
+            }
+
+            .filter-tab {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .work-image {
+                height: 200px;
+            }
+            
+            .summary-image {
+                height: 160px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .works-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .work-image {
+                height: 180px;
+            }
+            
+            .work-info {
+                padding: 1.5rem;
+            }
+            
+            .work-info h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .work-item,
+        .stat-item {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"><!-- ヘッダーはJavaScriptで読み込まれます --></div>
+
+    <div class="page-header">
+        <h1 class="page-title">実績</h1>
+        <p class="page-subtitle">Works</p>
+    </div>
+
+    <section>
+        <div class="container">
+            <div class="works-intro">
+                <p>文山建築設計事務所がこれまでに手がけた建築プロジェクトをご紹介します。</p>
+                <p>住宅から商業施設、公共建築まで、多岐にわたる分野での実績をご覧いただけます。</p>
+            </div>
+
+            <div class="filter-tabs">
+                <button class="filter-tab active">すべて</button>
+                <button class="filter-tab">オフィス</button>
+                <button class="filter-tab">商業施設</button>
+                <button class="filter-tab">公共建築</button>
+                <button class="filter-tab">改修工事</button>
+            </div>
+
+            <div id="works-summary" class="works-summary-grid">
+                <div class="summary-item">
+                    <div class="summary-image">
+                        <img src="./images/works/民間プロジェクト.jpg" alt="民間プロジェクト">
+                    </div>
+                    <div class="summary-info">
+                        <h3>民間プロジェクト</h3>
+                        <p>オフィス・商業施設・店舗など ｜ 累積7件</p>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-image">
+                        <img src="./images/works/公共プロジェクト.jpg" alt="公共プロジェクト">
+                    </div>
+                    <div class="summary-info">
+                        <h3>公共プロジェクト</h3>
+                        <p>庁舎・施設・保育所など ｜ 累積13件</p>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-image">
+                        <img src="./images/works/調査プロジェクト.jpg" alt="調査プロジェクト">
+                    </div>
+                    <div class="summary-info">
+                        <h3>調査プロジェクト</h3>
+                        <p>環境調査・建物診断など ｜ 累積15件</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="works-grid">
+                <div class="work-item">
+                    <div class="work-image">
+                        <div class="work-category">オフィス</div>
+                        <img src="./images/works/枚方信用金庫くずは支店.jpg" alt="枚方信用金庫くずは支店">
+                    </div>
+                    <div class="work-info">
+                        <h3>枚方信用金庫くずは支店</h3>
+                        <div class="work-meta">
+                            <span>📍 大阪府枚方市</span>
+                            <span>📅 2022年</span>
+                        </div>
+                        <p>地域最大の金融機関の重要な旗艦店。駅前ロータリーからの人の流れをに沿ったエントランスと、吹き抜きのペンダント照明が特徴的な店舗です。</p>
+                        <div class="work-details">
+                            <h4>プロジェクト詳細</h4>
+                            <div class="work-specs">
+                                <div class="work-spec">
+                                    <span class="spec-label">構造：</span>
+                                    <span class="spec-value">RC造3階（13階建集合住宅の低層部）</span>
+                                </div>
+                                <div class="work-spec">
+                                    <span class="spec-label">延床面積：</span>
+                                    <span class="spec-value">200㎡</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-image">
+                        <div class="work-category">商業施設</div>
+                        <img src="./images/works/ヘアサロン Macherie Ange.jpg" alt="ヘアサロン Macherie Ange">
+                    </div>
+                    <div class="work-info">
+                        <h3>ヘアサロン Macherie Ange</h3>
+                        <div class="work-meta">
+                            <span>📍 大阪市阿倍野区</span>
+                            <span>📅 2024年</span>
+                        </div>
+                        <p>都市の中にある癒しと美容を提供するオアシスのような店舗です。フェミニンとクールが共存する間接照明の演出を取り入れた空間を創出。お客様にとって居心地の良い空間を実現しました。</p>
+                        <div class="work-details">
+                            <h4>プロジェクト詳細</h4>
+                            <div class="work-specs">
+                                <div class="work-spec">
+                                    <span class="spec-label">構造：</span>
+                                    <span class="spec-value">木造</span>
+                                </div>
+                                <div class="work-spec">
+                                    <span class="spec-label">延床面積：</span>
+                                    <span class="spec-value">30㎡</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-image">
+                        <div class="work-category">公共建築</div>
+                        <img src="./images/works/水処理センター周辺施設.jpg" alt="水処理センター周辺施設">
+                    </div>
+                    <div class="work-info">
+                        <h3>水処理センター周辺施設</h3>
+                        <div class="work-meta">
+                            <span>📍 大阪府</span>
+                            <span>📅 2023年</span>
+                        </div>
+                        <p>地域住民の交流拠点として機能する多目的施設。バリアフリー設計により、あらゆる世代の方々が利用しやすい空間を実現しました。</p>
+                        <div class="work-details">
+                            <h4>プロジェクト詳細</h4>
+                            <div class="work-specs">
+                                <div class="work-spec">
+                                    <span class="spec-label">構造：</span>
+                                    <span class="spec-value">RC造3階・鉄骨造</span>
+                                </div>
+                                <div class="work-spec">
+                                    <span class="spec-label">延床面積：</span>
+                                    <span class="spec-value">850㎡</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-image">
+                        <div class="work-category">住宅</div>
+                        <img src="./images/works/NAGAREMACHI-HOUSE.jpg" alt="NAGAREMACHI-HOUSE">
+                    </div>
+                    <div class="work-info">
+                        <h3>NAGAREMACHI-HOUSE</h3>
+                        <div class="work-meta">
+                            <span>📍 大阪市</span>
+                            <span>📅 2022年</span>
+                        </div>
+                        <p>敷地の高低差を活かし、各階から異なる景色を楽しめる住宅。省エネルギー性能にも配慮した環境に優しい設計が特徴です。</p>
+                        <div class="work-details">
+                            <h4>プロジェクト詳細</h4>
+                            <div class="work-specs">
+                                <div class="work-spec">
+                                    <span class="spec-label">構造：</span>
+                                    <span class="spec-value">鉄骨造3階</span>
+                                </div>
+                                <div class="work-spec">
+                                    <span class="spec-label">延床面積：</span>
+                                    <span class="spec-value">145㎡</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-image">
+                        <div class="work-category">リノベーション</div>
+                        <img src="./images/works/阿南市古民家再生プロジェクト.jpg" alt="阿南市古民家再生プロジェクト">
+                    </div>
+                    <div class="work-info">
+                        <h3>阿南市古民家再生プロジェクト</h3>
+                        <div class="work-meta">
+                            <span>📍 徳島県阿南市</span>
+                            <span>📅 2023年</span>
+                        </div>
+                        <p>築80年の古民家を現代的な住宅にリノベーション。伝統的な梁や柱を活かしながら、現代の生活スタイルに合わせた機能的な空間を創出しました。</p>
+                        <div class="work-details">
+                            <h4>プロジェクト詳細</h4>
+                            <div class="work-specs">
+                                <div class="work-spec">
+                                    <span class="spec-label">構造：</span>
+                                    <span class="spec-value">木造平屋建</span>
+                                </div>
+                                <div class="work-spec">
+                                    <span class="spec-label">延床面積：</span>
+                                    <span class="spec-value">180㎡</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-image">
+                        <div class="work-category">商業施設</div>
+                        <img src="./images/works/植物園トイレ設計.jpg" alt="植物園トイレ設計">
+                    </div>
+                    <div class="work-info">
+                        <h3>植物園トイレ設計</h3>
+                        <div class="work-meta">
+                            <span>📍 大阪府河内長野市</span>
+                            <span>📅 2022年</span>
+                        </div>
+                        <p>植物園の施設の中のトイレとして癒しを感じるニュートラルな空間。豪華な壁と陶器を使用し、エレガントと落ち着きのある空間を演出しています。</p>
+                        <div class="work-details">
+                            <h4>プロジェクト詳細</h4>
+                            <div class="work-specs">
+                                <div class="work-spec">
+                                    <span class="spec-label">構造：</span>
+                                    <span class="spec-value">RC造</span>
+                                </div>
+                                <div class="work-spec">
+                                    <span class="spec-label">延床面積：</span>
+                                    <span class="spec-value">40㎡</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">実績数値</h2>
+            <p class="section-subtitle">Project Statistics</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">35+</div>
+                    <div class="stat-label">プロジェクト数</div>
+                    <div class="stat-description">設立以来の累計実績</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">年間</div>
+                    <div class="stat-description">継続的な実績</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">満足度</div>
+                    <div class="stat-description">お客様満足度</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div id="footer-placeholder"><!-- フッターはJavaScriptで読み込まれます --></div>
+
+    <script src="./js/content-loader.js"></script>
+    <script>
+        // フィルター機能
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            const workItems = document.querySelectorAll('.work-item');
+            const worksSummary = document.getElementById('works-summary');
+
+            // カテゴリーマッピング
+            const categoryMap = {
+                'すべて': 'all',
+                'オフィス': 'オフィス',
+                '商業施設': '商業施設',
+                '公共建築': '公共建築',
+                '改修工事': 'リノベーション',
+                '住宅': '住宅'
+            };
+
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // アクティブタブの更新
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const selectedCategory = this.textContent;
+                    const mappedCategory = categoryMap[selectedCategory] || selectedCategory;
+
+                    // 見出しセクションの表示/非表示
+                    if (worksSummary) {
+                        if (selectedCategory === 'すべて') {
+                            worksSummary.style.display = 'grid';
+                        } else {
+                            worksSummary.style.display = 'none';
+                        }
+                    }
+
+                    // フィルタリング
+                    workItems.forEach(item => {
+                        if (selectedCategory === 'すべて') {
+                            item.style.display = 'block';
+                        } else {
+                            const itemCategory = item.querySelector('.work-category');
+                            if (itemCategory && itemCategory.textContent === mappedCategory) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+
+                    // グリッドの再レイアウトをトリガー
+                    const worksGrid = document.querySelector('.works-grid');
+                    if (worksGrid) {
+                        // 一時的にdisplay:noneにしてから戻すことで再レンダリングを強制
+                        worksGrid.style.display = 'none';
+                        setTimeout(() => {
+                            worksGrid.style.display = 'grid';
+                        }, 10);
+                    }
+                });
+            });
+
+            // 住宅カテゴリー用のタブがない場合の処理
+            const hasResidentialTab = Array.from(filterTabs).some(tab => tab.textContent === '住宅');
+            if (!hasResidentialTab) {
+                // 住宅プロジェクトがある場合、住宅タブを追加
+                const hasResidential = Array.from(workItems).some(item => {
+                    const category = item.querySelector('.work-category');
+                    return category && category.textContent === '住宅';
+                });
+
+                if (hasResidential) {
+                    const filterContainer = document.querySelector('.filter-tabs');
+                    if (filterContainer) {
+                        const residentialTab = document.createElement('button');
+                        residentialTab.className = 'filter-tab';
+                        residentialTab.textContent = '住宅';
+                        filterContainer.appendChild(residentialTab);
+
+                        // イベントリスナーを追加
+                        residentialTab.addEventListener('click', function() {
+                            filterTabs.forEach(t => t.classList.remove('active'));
+                            this.classList.add('active');
+
+                            // 見出しセクションを非表示
+                            if (worksSummary) {
+                                worksSummary.style.display = 'none';
+                            }
+
+                            workItems.forEach(item => {
+                                const itemCategory = item.querySelector('.work-category');
+                                if (itemCategory && itemCategory.textContent === '住宅') {
+                                    item.style.display = 'block';
+                                } else {
+                                    item.style.display = 'none';
+                                }
+                            });
+                        });
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

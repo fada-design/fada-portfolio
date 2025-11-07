@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブログ | 文山建築設計事務所 | FUMIYAMA ARCHITECT'S DESIGN ASSOCIATES</title>
+    <style>
+        /* リセットCSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 基本設定 */
+        body {
+            font-family: 'Yu Gothic', 'YuGothic', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ヘッダー */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-main {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #2c5f7d;
+        }
+
+        /* ページヘッダー */
+        .page-header {
+            background: #f8f9fa;
+            padding: 12rem 2rem 6rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c5f7d;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* セクション */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c5f7d;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        /* ブログ紹介 */
+        .blog-intro {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .blog-intro p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        /* 注目記事 */
+        .featured-post {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-image {
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1rem;
+            min-height: 300px;
+        }
+
+        .featured-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: #2c5f7d;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .featured-content h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .featured-meta {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+
+        .featured-content p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more {
+            color: #2c5f7d;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #34495e;
+        }
+
+        /* カテゴリタブ */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .category-tab.active,
+        .category-tab:hover {
+            background: #2c5f7d;
+            color: white;
+            border-color: #2c5f7d;
+        }
+
+        /* ブロググリッド */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(44, 95, 125, 0.12);
+            border-color: #e8f0f5;
+        }
+
+        .blog-image {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #adb5bd;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .blog-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #2c5f7d 0%, #4a8fb5 100%);
+        }
+
+        .blog-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(44, 95, 125, 0.9);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .blog-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .blog-tag {
+            background: #f0f0f0;
+            color: #666;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .blog-link {
+            color: #2c5f7d;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .blog-link:hover {
+            color: #34495e;
+        }
+
+        /* ページネーション */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .pagination-btn {
+            padding: 0.8rem 1.2rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .pagination-btn.active,
+        .pagination-btn:hover {
+            background: #2c5f7d;
+            color: white;
+            border-color: #2c5f7d;
+        }
+
+        /* ニュースレターセクション */
+        .newsletter-section {
+            background: #2c5f7d;
+            color: white;
+        }
+
+        .newsletter-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-content h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-content p {
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            color: #bdc3c7;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .newsletter-btn {
+            padding: 1rem 2rem;
+            background: white;
+            color: #2c5f7d;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            background: #f0f0f0;
+        }
+
+        /* フッター */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #aaa;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 8rem 2rem 4rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .featured-post {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .featured-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .blog-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            section {
+                padding: 4rem 2rem;
+            }
+
+            .categories {
+                gap: 0.5rem;
+            }
+
+            .category-tab {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .blog-card,
+        .featured-post {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"><!-- ヘッダーはJavaScriptで読み込まれます --></div>
+
+    <div class="page-header">
+        <h1 class="page-title">ブログ</h1>
+        <p class="page-subtitle">Blog</p>
+    </div>
+
+    <section>
+        <div class="container">
+            <!-- 作成中の表示 -->
+            <div style="text-align: center; padding: 6rem 2rem; background: #f8f9fa; border-radius: 12px; margin-bottom: 4rem;">
+                <h2 style="font-size: 2rem; color: #2c5f7d; margin-bottom: 1rem;">ブログコンテンツ作成中</h2>
+                <p style="font-size: 1.1rem; color: #666; line-height: 1.8;">
+                    現在、ブログコンテンツを準備しております。<br>
+                    建築設計のヒントやプロジェクトの紹介など、有益な情報を定期的に更新予定です。<br>
+                    今しばらくお待ちください。
+                </p>
+            </div>
+
+            <!-- 今後の更新用フォーマット（非表示） -->
+            <div style="display: none;">
+                <div class="blog-intro">
+                    <p>建築に関する最新情報、プロジェクトの舞台裏、設計のコツなど、</p>
+                    <p>文山建築設計事務所の日々の取り組みや思いをお伝えします。</p>
+                </div>
+
+                <article class="featured-post">
+                    <div class="featured-image">
+                        注目記事の画像
+                    </div>
+                    <div class="featured-content">
+                        <span class="featured-badge">注目記事</span>
+                        <h2>持続可能な建築デザインの未来</h2>
+                        <div class="featured-meta">2024年10月15日 | 代表 文山重勲</div>
+                        <p>地球環境への配慮がますます重要になる中、建築設計における持続可能性への取り組みについて、これまでの経験と今後の展望をお話しします。カーボンニュートラルな建築を目指すための具体的なアプローチと、実際のプロジェクト事例をご紹介します。</p>
+                        <a href="#" class="read-more">続きを読む</a>
+                    </div>
+                </article>
+
+                <div class="categories">
+                    <button class="category-tab active">すべて</button>
+                    <button class="category-tab">設計のコツ</button>
+                    <button class="category-tab">プロジェクト紹介</button>
+                    <button class="category-tab">業界トレンド</button>
+                    <button class="category-tab">事務所の日常</button>
+                </div>
+            </div>
+
+            <!-- 今後のブログ記事サンプル（非表示） -->
+            <div id="blog-summary" class="blog-grid" style="display: none;">
+                <div class="blog-card">
+                    <div class="blog-image">記事画像</div>
+                    <div class="blog-content">
+                        <p class="blog-date">2024.10.01</p>
+                        <h3>快適な住まいづくりのポイント</h3>
+                        <p>理想の住まいを実現するために知っておきたい設計のポイントをご紹介します。</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">記事画像</div>
+                    <div class="blog-content">
+                        <p class="blog-date">2024.09.15</p>
+                        <h3>最新の建築トレンド</h3>
+                        <p>2024年注目の建築デザインや素材について解説します。</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">記事画像</div>
+                    <div class="blog-content">
+                        <p class="blog-date">2024.09.01</p>
+                        <h3>リノベーションの魅力</h3>
+                        <p>既存建物を活かした空間づくりの可能性についてお話しします。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 追加のブログ記事（非表示） -->
+            <div class="blog-grid" style="display: none;">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-category">設計のコツ</div>
+                        記事画像
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">2024年10月10日</div>
+                        <h3>自然光を活かした住宅設計のポイント</h3>
+                        <p>自然光を効果的に取り入れることで、住宅の快適性と省エネルギー性能を大幅に向上させることができます。窓の配置や庇の設計など、実践的なテクニックをご紹介します。</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">住宅設計</span>
+                            <span class="blog-tag">自然光</span>
+                            <span class="blog-tag">省エネ</span>
+                        </div>
+                        <a href="#" class="blog-link">続きを読む →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-category">プロジェクト紹介</div>
+                        記事画像
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">2024年10月05日</div>
+                        <h3>文山の家 - 家族をつなぐ住まいづくり</h3>
+                        <p>最新プロジェクト「文山の家」の設計プロセスをご紹介。お客様との対話から生まれた、家族のコミュニケーションを促進する空間設計の工夫をお話しします。</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">住宅</span>
+                            <span class="blog-tag">家族</span>
+                            <span class="blog-tag">木造</span>
+                        </div>
+                        <a href="#" class="blog-link">続きを読む →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-category">業界トレンド</div>
+                        記事画像
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">2024年09月28日</div>
+                        <h3>2024年建築業界の最新トレンド</h3>
+                        <p>AIを活用した設計支援ツールの普及、サステナブル建材の進化、ウェルビーイングを重視した空間設計など、今年注目すべき建築業界のトレンドを解説します。</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">トレンド</span>
+                            <span class="blog-tag">AI</span>
+                            <span class="blog-tag">サステナブル</span>
+                        </div>
+                        <a href="#" class="blog-link">続きを読む →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-category">設計のコツ</div>
+                        記事画像
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">2024年09月20日</div>
+                        <h3>狭小地を活かす設計アイデア</h3>
+                        <p>都市部の限られた敷地でも、工夫次第で豊かな住空間を実現できます。垂直方向の活用、中庭の配置、採光の確保など、狭小地設計のノウハウをお伝えします。</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">狭小地</span>
+                            <span class="blog-tag">都市部</span>
+                            <span class="blog-tag">空間活用</span>
+                        </div>
+                        <a href="#" class="blog-link">続きを読む →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-category">事務所の日常</div>
+                        記事画像
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">2024年09月15日</div>
+                        <h3>新人スタッフが語る建築設計の魅力</h3>
+                        <p>今年入社した新人スタッフに、建築設計の仕事に対する想いや、日々の業務で感じる魅力について語ってもらいました。これから建築を学ぶ方にも参考になる内容です。</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">新人</span>
+                            <span class="blog-tag">キャリア</span>
+                            <span class="blog-tag">事務所</span>
+                        </div>
+                        <a href="#" class="blog-link">続きを読む →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-category">プロジェクト紹介</div>
+                        記事画像
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">2024年09月08日</div>
+                        <h3>古民家再生プロジェクトの舞台裏</h3>
+                        <p>築80年の古民家を現代的な住宅に再生したプロジェクトをご紹介。伝統的な構造を活かしながら、現代の暮らしに適応させる設計の工夫と施工の苦労をお話しします。</p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">古民家</span>
+                            <span class="blog-tag">再生</span>
+                            <span class="blog-tag">伝統</span>
+                        </div>
+                        <a href="#" class="blog-link">続きを読む →</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="pagination">
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <button class="pagination-btn">次へ</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h3>ニュースレター登録</h3>
+                <p>最新の記事やプロジェクト情報をお届けします。建築に関する有益な情報を定期的にお送りいたします。</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="メールアドレスを入力してください">
+                    <button type="submit" class="newsletter-btn">登録する</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"><!-- フッターはJavaScriptで読み込まれます --></div>
+
+    <script src="./js/content-loader.js"></script>
+</body>
+</html>

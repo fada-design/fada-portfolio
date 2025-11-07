@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ | 文山建築設計事務所 | FUMIYAMA ARCHITECT'S DESIGN ASSOCIATES</title>
+    <style>
+        /* リセットCSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 基本設定 */
+        body {
+            font-family: 'Yu Gothic', 'YuGothic', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ヘッダー */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-main {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #2c5f7d;
+        }
+
+        /* ページヘッダー */
+        .page-header {
+            background: #f8f9fa;
+            padding: 12rem 2rem 6rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c5f7d;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* セクション */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c5f7d;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        /* お問い合わせ紹介 */
+        .contact-intro {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .contact-intro h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c5f7d;
+            margin-bottom: 1rem;
+        }
+
+        .contact-intro p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        /* お問い合わせグリッド */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        /* お問い合わせ情報 */
+        .contact-info h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c5f7d;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .info-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c5f7d;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .office-hours {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .office-hours h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c5f7d;
+            margin-bottom: 1rem;
+        }
+
+        .hours-grid {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .hours-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+
+        .hours-item span:first-child {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .hours-item span:last-child {
+            color: #666;
+        }
+
+        /* お問い合わせフォーム */
+        .contact-form-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form {
+            padding: 2rem;
+        }
+
+        .contact-form h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c5f7d;
+            margin-bottom: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2c5f7d;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 0.2rem;
+            min-width: 16px;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .submit-btn {
+            background: #2c5f7d;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* マップセクション */
+        .map-section {
+            background: #f8f9fa;
+        }
+
+        .map-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        .map-placeholder {
+            background: #ddd;
+            height: 400px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.2rem;
+        }
+
+        .map-info h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c5f7d;
+            margin-bottom: 1rem;
+        }
+
+        .map-info p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .access-info {
+            margin-top: 2rem;
+        }
+
+        .access-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .access-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c5f7d;
+            margin-bottom: 0.5rem;
+        }
+
+        .access-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .access-item li {
+            color: #666;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .access-item li:before {
+            content: '•';
+            color: #2c5f7d;
+            position: absolute;
+            left: 0;
+        }
+
+        /* FAQセクション */
+        .faq-section {
+            background: white;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #e9ecef;
+        }
+
+        .faq-question h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: #2c5f7d;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* フッター */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #aaa;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 8rem 2rem 4rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .contact-grid,
+            .map-container,
+            .form-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            section {
+                padding: 4rem 2rem;
+            }
+
+            .contact-grid {
+                gap: 2rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-item,
+        .contact-form-section,
+        .faq-item {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"><!-- ヘッダーはJavaScriptで読み込まれます --></div>
+
+    <div class="page-header">
+        <h1 class="page-title">お問い合わせ</h1>
+        <p class="page-subtitle">Contact</p>
+    </div>
+
+    <section>
+        <div class="container">
+            <div class="contact-intro">
+                <h2>お気軽にお問い合わせください</h2>
+                <p>建築設計に関するご相談、プロジェクトのご依頼、お見積もりなど、どのようなことでもお気軽にお問い合わせください。</p>
+                <p>初回相談は無料で承っております。お客様の理想を形にするお手伝いをさせていただきます。</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>お問い合わせ先</h3>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h4>所在地</h4>
+                            <p>〒547-0044<br>大阪市平野区平野本町2-10-4<br>えんだら百歩4C</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-content">
+                            <h4>電話番号</h4>
+                            <p>06-7660-4777<br>（留守の際は留守番電話にご連絡先をお知らせください）</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📠</div>
+                        <div class="info-content">
+                            <h4>FAX</h4>
+                            <p>06-4305-3296<br>（24時間受付）</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-content">
+                            <h4>メールアドレス</h4>
+                            <p>info@fada-s.com<br>（24時間受付、3営業日以内に返信）</p>
+                        </div>
+                    </div>
+
+                    <div class="office-hours">
+                        <h4>営業時間</h4>
+                        <div class="hours-grid">
+                            <div class="hours-item">
+                                <span>平日</span>
+                                <span>9:00 - 18:00</span>
+                            </div>
+                            <div class="hours-item">
+                                <span>土曜日</span>
+                                <span>10:00 - 16:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-section">
+                    <form class="contact-form">
+                        <h3>お問い合わせフォーム</h3>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="lastName">お名前（姓） <span class="required">*</span></label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName">お名前（名） <span class="required">*</span></label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="email">メールアドレス <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">電話番号</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">会社名・団体名</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">お問い合わせ項目 <span class="required">*</span></label>
+                            <select id="subject" name="subject" required>
+                                <option value="">選択してください</option>
+                                <option value="新築住宅">新築住宅について</option>
+                                <option value="商業施設">商業施設設計について</option>
+                                <option value="公共建築">公共建築について</option>
+                                <option value="リノベーション">リノベーションについて</option>
+                                <option value="建物調査">建物調査・診断について</option>
+                                <option value="見積もり">お見積もりについて</option>
+                                <option value="採用">採用について</option>
+                                <option value="その他">その他</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">ご予算</label>
+                            <select id="budget" name="budget">
+                                <option value="">選択してください</option>
+                                <option value="1000万円未満">1,000万円未満</option>
+                                <option value="1000-3000万円">1,000万円〜3,000万円</option>
+                                <option value="3000-5000万円">3,000万円〜5,000万円</option>
+                                <option value="5000-1億円">5,000万円〜1億円</option>
+                                <option value="1億円以上">1億円以上</option>
+                                <option value="未定">未定</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timeline">希望時期</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">選択してください</option>
+                                <option value="3ヶ月以内">3ヶ月以内</option>
+                                <option value="6ヶ月以内">6ヶ月以内</option>
+                                <option value="1年以内">1年以内</option>
+                                <option value="1年以上先">1年以上先</option>
+                                <option value="未定">未定</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="message">お問い合わせ内容 <span class="required">*</span></label>
+                            <textarea id="message" name="message" placeholder="プロジェクトの詳細、ご要望、ご質問など、お気軽にお書きください。" required></textarea>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="privacy" name="privacy" required>
+                            <label for="privacy">
+                                <a href="#" style="color: #2c5f7d;">プライバシーポリシー</a>に同意します <span class="required">*</span>
+                            </label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter">
+                                建築に関する有益な情報をメールで受け取る（任意）
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">送信する</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container">
+                <div class="map-wrapper">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.881312865842!2d135.54742631562!3d34.632295995237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000dee94f6b3b21%3A0xea1293cb13b0f8fb!2z44GI44KT44Gg44KJ55m-5q2p!5e0!3m2!1sja!2sjp!4v1762481571174!5m2!1sja!2sjp"
+                        width="100%"
+                        height="500"
+                        style="border:0; border-radius: 10px;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="map-info">
+                    <h3>アクセス</h3>
+                    <p>〒547-0044 大阪市平野区平野本町2-10-4 えんだら百歩4C</p>
+                    <p>お車でお越しの際は、近隣のコインパーキングをご利用ください。</p>
+                    
+                    <div class="access-info">
+                        <div class="access-item">
+                            <h4>電車でお越しの場合</h4>
+                            <ul>
+                                <li>地下鉄谷町線「平野駅」徒歩2分</li>
+                                <li>4番出口より北東方面</li>
+                            </ul>
+                        </div>
+                        <div class="access-item">
+                            <h4>お車でお越しの場合</h4>
+                            <ul>
+                                <li>阪神高速駒川中野IC より約10分</li>
+                                <li>駐車場：近隣コインパーキング</li>
+                                <li>事前にご連絡いただければご案内します</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">よくあるご質問</h2>
+            <p class="section-subtitle">FAQ</p>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>設計料はどのくらいかかりますか？</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>設計料は建物の規模や用途によって異なります。一般的には工事費の10-15%程度が目安となりますが、工事費が分かっていればそこから概算をお伝え出来ます。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>設計から完成までどのくらいの期間が必要ですか？</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>建物の規模や複雑さによって異なりますが、商業施設や公共建築の場合はより長期間を要する場合があります。最初の打合せで予定期間を提示いたします。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>対応エリアはどこまでですか？</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>設計に関しては、エリアの制限はありません。調査は基本的に関西に限りますが、内容によっては全国対応も可能です。まずはお気軽にご相談ください。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>土地探しから相談できますか？</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>土地探しの段階からサポートいたします。建築の専門家の視点で、ご希望に合った土地選びのアドバイスをいたします。不動産会社とのネットワークもございますので、お気軽にご相談ください。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>建築基準法などの法規制についても対応していただけますか？</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>建築基準法をはじめとする各種法規制への対応は設計の基本です。確認申請業務も含めて一貫してサポートいたします。複雑な法規制についてもわかりやすくご説明いたします。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"><!-- フッターはJavaScriptで読み込まれます --></div>
+
+    <script src="./js/content-loader.js"></script>
+    <script>
+        // FAQ トグル機能
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    const faqAnswer = faqItem.querySelector('.faq-answer');
+                    const faqToggle = this.querySelector('.faq-toggle');
+                    
+                    // 現在の状態を確認
+                    const isOpen = faqAnswer.style.display === 'block';
+                    
+                    // すべてのFAQを閉じる
+                    document.querySelectorAll('.faq-answer').forEach(answer => {
+                        answer.style.display = 'none';
+                    });
+                    document.querySelectorAll('.faq-toggle').forEach(toggle => {
+                        toggle.textContent = '+';
+                    });
+                    
+                    // クリックされたFAQをトグル
+                    if (!isOpen) {
+                        faqAnswer.style.display = 'block';
+                        faqToggle.textContent = '−';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
