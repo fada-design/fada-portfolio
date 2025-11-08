@@ -1,7 +1,34 @@
-// 動的コンテンツローダー - HTMLファイルから直接読み込み
+// 動的コンテンツローダー - モバイル対応版
 class ContentLoader {
     constructor() {
         this.cache = new Map();
+        // ベースURLを設定（モバイル対応の重要ポイント）
+        this.baseURL = this.getBaseURL();
+    }
+
+    // ベースURLを取得する関数（モバイル対応の追加）
+    getBaseURL() {
+        // 本番環境とローカル環境を自動判定
+        const hostname = window.location.hostname;
+        if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '') {
+            // ローカル環境
+            return window.location.origin + window.location.pathname.replace(/[^\/]*$/, '');
+        } else {
+            // 本番環境（fada-s.com）
+            return 'https://fada-s.com/';
+        }
+    }
+
+    // URLを正規化する関数（モバイル対応の追加）
+    normalizeURL(filePath) {
+        // 相対パスを絶対URLに変換
+        if (filePath.startsWith('./')) {
+            filePath = filePath.substring(2);
+        }
+        if (filePath.startsWith('/')) {
+            return this.baseURL + filePath.substring(1);
+        }
+        return this.baseURL + filePath;
     }
 
     // HTMLファイルから特定IDの要素を取得
@@ -13,8 +40,27 @@ class ContentLoader {
                 return this.cache.get(cacheKey);
             }
 
-            // HTMLファイルを取得
-            const response = await fetch(filePath);
+            // URLを正規化（モバイル対応）
+            const fullURL = this.normalizeURL(filePath);
+            console.log(`Loading content from: ${fullURL}`);
+
+            // HTMLファイルを取得（タイムアウト設定追加）
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5秒でタイムアウト
+
+            const response = await fetch(fullURL, {
+                method: 'GET',
+                mode: 'cors',
+                cache: 'no-cache',
+                signal: controller.signal
+            }).catch(error => {
+                // フェッチエラーの場合、もう一度相対パスで試す
+                console.log(`Retrying with relative path: ${filePath}`);
+                return fetch(filePath);
+            });
+
+            clearTimeout(timeoutId);
+
             if (!response.ok) {
                 throw new Error(`Failed to load ${filePath}: ${response.status}`);
             }
@@ -28,7 +74,8 @@ class ContentLoader {
             // 指定IDの要素を取得
             const element = doc.getElementById(elementId);
             if (!element) {
-                throw new Error(`Element with ID "${elementId}" not found in ${filePath}`);
+                console.warn(`Element with ID "${elementId}" not found in ${filePath}`);
+                return this.getFallbackContent(elementId);
             }
             
             // 要素の内容を取得
@@ -40,32 +87,67 @@ class ContentLoader {
             return content;
         } catch (error) {
             console.error(`Error loading content from ${filePath}:`, error);
-            return `<p>コンテンツの読み込みに失敗しました: ${error.message}</p>`;
+            // フォールバック内容を返す
+            return this.getFallbackContent(elementId);
         }
+    }
+
+    // フォールバックコンテンツ（モバイル対応の追加）
+    getFallbackContent(elementId) {
+        const fallbacks = {
+            'services-summary': `
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>建築設計</h3>
+                        <p>新築・リノベーション・増改築まで、お客様のニーズに合わせた設計を提供します。</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>建築音響コンサルティング</h3>
+                        <p>騒音対策から音響設計まで、快適な音環境を実現します。</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>技術コンサルティング</h3>
+                        <p>建築に関する技術的な課題解決をサポートします。</p>
+                    </div>
+                </div>`,
+            'about-summary': `
+                <div style="text-align: center; padding: 2rem;">
+                    <h3>環境と人が互いに自律し、調和できる未来へ</h3>
+                    <p>文山建築設計事務所は、建築を通じて社会に貢献することを使命としています。</p>
+                </div>`,
+            'works-summary': `
+                <div class="works-grid">
+                    <div class="work-summary">
+                        <div class="summary-info">
+                            <h3>実績紹介</h3>
+                            <p>詳細な実績情報は準備中です。</p>
+                        </div>
+                    </div>
+                </div>`,
+            'blog-summary': `
+                <div style="text-align: center; padding: 2rem;">
+                    <h3>ブログコンテンツ準備中</h3>
+                    <p>建築設計のヒントやプロジェクトの紹介など、有益な情報を定期的に更新予定です。</p>
+                </div>`
+        };
+        return fallbacks[elementId] || '<p>コンテンツを読み込めませんでした。</p>';
     }
 
     // 各サマリーコンテンツを取得
     async getServicesSummary() {
-        return await this.loadContentFromHTML('./services.html', 'services-summary');
+        return await this.loadContentFromHTML('services.html', 'services-summary');
     }
 
     async getAboutSummary() {
-        return await this.loadContentFromHTML('./about.html', 'about-summary');
+        return await this.loadContentFromHTML('about.html', 'about-summary');
     }
 
     async getWorksSummary() {
-        return await this.loadContentFromHTML('./works.html', 'works-summary');
+        return await this.loadContentFromHTML('works.html', 'works-summary');
     }
 
     async getBlogSummary() {
-        return `<div style="text-align: center; padding: 6rem 2rem; background: #f8f9fa; border-radius: 12px; margin-bottom: 4rem;">
-    <h2 style="font-size: 2rem; color: #2c5f7d; margin-bottom: 1rem;">ブログコンテンツ作成中</h2>
-    <p style="font-size: 1.1rem; color: #666; line-height: 1.8;">
-        現在、ブログコンテンツを準備しております。<br>
-        建築設計のヒントやプロジェクトの紹介など、有益な情報を定期的に更新予定です。<br>
-        今しばらくお待ちください。
-    </p>
-</div>`;
+        return await this.loadContentFromHTML('blog.html', 'blog-summary');
     }
 
     // ヘッダーとフッターのコンテンツ（静的）
@@ -73,17 +155,23 @@ class ContentLoader {
         return `<header>
     <nav>
         <div class="logo">
-            <a href="index.html">
-                <img class="logo-image" src="./images/logo.png" alt="文山建築設計事務所">
-            </a>
+            <div class="logo-text">
+                <div class="logo-main">文山建築設計事務所</div>
+                <div class="logo-sub">Fumiyama Architect's Design Associates</div>
+            </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="index.html" data-page="index">ホーム</a></li>
-            <li><a href="about.html" data-page="about">会社概要</a></li>
-            <li><a href="services.html" data-page="services">サービス</a></li>
-            <li><a href="works.html" data-page="works">実績</a></li>
-            <li><a href="blog.html" data-page="blog">ブログ</a></li>
-            <li><a href="contact.html" data-page="contact">お問い合わせ</a></li>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" data-page="index">ホーム</a></li>
+            <li><a href="#about" data-page="about">会社概要</a></li>
+            <li><a href="#services" data-page="services">サービス</a></li>
+            <li><a href="#works" data-page="works">実績</a></li>
+            <li><a href="#blog" data-page="blog">ブログ</a></li>
+            <li><a href="#contact" data-page="contact">お問い合わせ</a></li>
         </ul>
     </nav>
 </header>`;
@@ -124,9 +212,9 @@ class ContentLoader {
         const element = document.getElementById(elementId);
         if (!element) return;
 
-        // ローディング表示
+        // ローディング表示（短時間のため簡略化）
         if (contentType !== 'header' && contentType !== 'footer') {
-            element.innerHTML = '<p style="text-align: center; color: #999;">コンテンツを読み込み中...</p>';
+            element.innerHTML = '<p style="text-align: center; color: #999;">読み込み中...</p>';
         }
 
         try {
@@ -155,9 +243,39 @@ class ContentLoader {
             }
             
             element.innerHTML = content;
+            
+            // モバイルメニューの再初期化（ヘッダー読み込み後）
+            if (contentType === 'header') {
+                this.initMobileMenu();
+            }
         } catch (error) {
             console.error(`Error loading ${contentType}:`, error);
-            element.innerHTML = `<p>コンテンツの読み込みに失敗しました: ${error.message}</p>`;
+            element.innerHTML = this.getFallbackContent(contentType);
+        }
+    }
+
+    // モバイルメニューの初期化（追加）
+    initMobileMenu() {
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const overlay = document.getElementById('overlay');
+        
+        if (mobileMenuToggle && navLinks) {
+            mobileMenuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                if (overlay) overlay.classList.toggle('active');
+            });
+
+            // メニューリンククリックでメニューを閉じる
+            const menuLinks = navLinks.querySelectorAll('a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    if (overlay) overlay.classList.remove('active');
+                });
+            });
         }
     }
 
@@ -190,12 +308,13 @@ class ContentLoader {
     async init() {
         try {
             console.log('動的コンテンツローダーを初期化中...');
+            console.log('Base URL:', this.baseURL);
             
-            // ヘッダーとフッターを同期的に読み込み
+            // ヘッダーとフッターを読み込み
             await this.loadContent('header-placeholder', 'header');
             await this.loadContent('footer-placeholder', 'footer');
             
-            // 各セクションのサマリーコンテンツを並行読み込み
+            // 各セクションのサマリーコンテンツを読み込み
             const contentMappings = [
                 { elementId: 'services-content', type: 'services-summary' },
                 { elementId: 'about-content', type: 'about-summary' },
@@ -203,20 +322,18 @@ class ContentLoader {
                 { elementId: 'blog-content', type: 'blog-summary' }
             ];
 
-            // 並行して読み込み
-            const promises = contentMappings.map(async mapping => {
+            // 順次読み込み（モバイル対応のため）
+            for (const mapping of contentMappings) {
                 const element = document.getElementById(mapping.elementId);
                 if (element) {
                     await this.loadContent(mapping.elementId, mapping.type);
                 }
-            });
-
-            await Promise.all(promises);
+            }
             
             // アクティブメニューのハイライト
             this.setActiveMenu();
             
-            console.log('動的コンテンツローダーの初期化完了 - 詳細ページを編集すれば自動的にindex.htmlに反映されます');
+            console.log('動的コンテンツローダーの初期化完了');
         } catch (error) {
             console.error('Content loading failed:', error);
         }
@@ -232,10 +349,15 @@ class ContentLoader {
 // グローバルインスタンスを作成
 const contentLoader = new ContentLoader();
 
-// DOMが読み込まれた後に実行
-document.addEventListener('DOMContentLoaded', function() {
+// DOMが読み込まれた後に実行（タイミング調整）
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        contentLoader.init();
+    });
+} else {
+    // 既にDOMが読み込まれている場合
     contentLoader.init();
-});
+}
 
 // 開発用：グローバルアクセス
 window.contentLoader = contentLoader;
