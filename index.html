@@ -513,22 +513,99 @@
 
         /* ヒーローセクション固有のレスポンシブ調整 */
         @media (max-width: 768px) {
+            .hero {
+                padding: 8rem 1rem 3rem;
+                overflow-x: hidden;
+            }
+            
+            .hero-text-section {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+            
             .hero-text-section h1 {
                 font-size: 2rem;
+                text-indent: 0;
+                word-wrap: break-word;
             }
             
             .hero-text-section p {
                 font-size: 0.95rem;
+                text-indent: 0;
+            }
+            
+            .hero-image-section {
+                max-width: 100%;
+                margin: -4rem 0 0 0;
+                height: 40vh;
+                border-radius: 8px;
+            }
+            
+            .hero-image-section img {
+                width: 100%;
+                transform: none;
+                animation: none;
+                position: relative;
             }
         }
         
         @media (max-width: 480px) {
+            .hero {
+                padding: 7rem 0.5rem 2rem;
+                overflow-x: hidden;
+            }
+            
+            .hero-text-section {
+                padding: 0 0.5rem;
+            }
+            
             .hero-text-section h1 {
                 font-size: 1.8rem;
+                line-height: 1.4;
+                text-indent: 0;
             }
             
             .hero-text-section p {
                 font-size: 0.9rem;
+                line-height: 1.6;
+                text-indent: 0;
+            }
+            
+            .hero-image-section {
+                margin: -3rem 0 0 0;
+                height: 35vh;
+                border-radius: 6px;
+            }
+            
+            /* モバイル用の全体的なレイアウト調整 */
+            body {
+                overflow-x: hidden;
+            }
+            
+            .services-grid,
+            .policy-grid,
+            .works-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .service-card,
+            .policy-item,
+            .summary-item,
+            .blog-card {
+                margin: 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            section {
+                padding: 3rem 0.5rem;
+            }
+            
+            .container {
+                padding: 0 0.5rem;
+                max-width: 100%;
             }
         }
     </style>
