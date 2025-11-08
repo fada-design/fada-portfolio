@@ -77,7 +77,15 @@ class ContentLoader {
                 <img class="logo-image" src="./images/logo.png" alt="文山建築設計事務所">
             </a>
         </div>
+        <button class="mobile-menu-toggle" aria-label="メニュー">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <ul class="nav-links">
+            <li class="mobile-menu-header">
+                <button class="mobile-menu-close" aria-label="メニューを閉じる">&times;</button>
+            </li>
             <li><a href="index.html" data-page="index">ホーム</a></li>
             <li><a href="about.html" data-page="about">会社概要</a></li>
             <li><a href="services.html" data-page="services">サービス</a></li>
@@ -186,6 +194,52 @@ class ContentLoader {
         return fileName.replace('.html', '');
     }
 
+    // モバイルメニューの初期化
+    initMobileMenu() {
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileClose = document.querySelector('.mobile-menu-close');
+        const navLinks = document.querySelector('.nav-links');
+        
+        // メニューを閉じる関数
+        const closeMenu = () => {
+            navLinks.classList.remove('mobile-active');
+            mobileToggle.classList.remove('active');
+        };
+        
+        if (mobileToggle && navLinks) {
+            // メニューボタンのクリックイベント
+            mobileToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('mobile-active');
+                mobileToggle.classList.toggle('active');
+            });
+            
+            // 閉じるボタンのクリックイベント
+            if (mobileClose) {
+                mobileClose.addEventListener('click', closeMenu);
+            }
+            
+            // メニューリンクをクリックした時にメニューを閉じる
+            const menuLinks = navLinks.querySelectorAll('a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+            
+            // 画面外をクリックした時にメニューを閉じる
+            document.addEventListener('click', (e) => {
+                if (!mobileToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+            
+            // ESCキーでメニューを閉じる
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeMenu();
+                }
+            });
+        }
+    }
+
     // 初期化処理
     async init() {
         try {
@@ -215,6 +269,9 @@ class ContentLoader {
             
             // アクティブメニューのハイライト
             this.setActiveMenu();
+            
+            // モバイルメニューの機能を初期化
+            this.initMobileMenu();
             
             console.log('動的コンテンツローダーの初期化完了 - 詳細ページを編集すれば自動的にindex.htmlに反映されます');
         } catch (error) {
