@@ -109,6 +109,11 @@ nav {
     padding: 5px;
 }
 
+/* PC表示ではモバイルメニューの閉じるボタンを非表示 */
+.mobile-menu-header {
+    display: none;
+}
+
 .mobile-menu-toggle span {
     width: 25px;
     height: 3px;
@@ -695,6 +700,7 @@ footer {
     
     /* モバイルメニューの閉じるボタン */
     .mobile-menu-header {
+        display: block;
         position: absolute;
         top: 1.5rem;
         right: 1.5rem;
