@@ -102,10 +102,16 @@
         }
 
         .service-icon {
-            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 1.5rem;
-            text-align: center;
-            filter: grayscale(0.2);
+            color: #2c5f7d;
+        }
+
+        .service-icon svg {
+            width: 44px;
+            height: 44px;
         }
 
         .service-card h3 {
@@ -366,7 +372,7 @@
 
             <div id="services-summary" class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">📐</div>
+                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 7v2"/><path d="M10.9 6.7 5 21"/><path d="M13.1 6.7 19 21"/><path d="M7.5 14.5a9.6 9.6 0 0 0 9 0"/></svg></div>
                     <h3>建築設計</h3>
                     <p>オフィスから商業施設、公共建築まで、あらゆる建築物の設計を手がけます。お客様のご要望をお伺いし、機能性と美しさを兼ね備えた建築を提案いたします。</p>
                     <div class="service-features">
@@ -382,7 +388,7 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon">🔍</div>
+                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="m9 13.5 2 2 4-4.5"/></svg></div>
                     <h3>監理</h3>
                     <p>設計の意図を正確に工事に反映させるため、建築工事の監理を行います。近隣対応から検査対応まで、責任を持って対応いたします。</p>
                     <div class="service-features">
@@ -398,7 +404,7 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon">📊</div>
+                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v4.5"/><path d="M2 21h9"/><path d="M7.5 8h2M7.5 12h2M7.5 16h2"/><circle cx="16.5" cy="15.5" r="3.5"/><path d="m19 18 3 3"/></svg></div>
                     <h3>建物調査・診断</h3>
                     <p>既存建物の状態を専門的な視点で調査・診断します。建物の健康状態を把握し、適切な改修・修繕計画をご提案いたします。</p>
                     <div class="service-features">
@@ -414,7 +420,7 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon">🔄</div>
+                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg></div>
                     <h3>リノベーション</h3>
                     <p>既存建物の価値を最大限に活かしながら、現代のニーズに合わせた改修・リノベーション設計を行います。</p>
                     <div class="service-features">
@@ -430,7 +436,7 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon">💭</div>
+                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg></div>
                     <h3>コンサルティング</h3>
                     <p>建築に関する専門的な知識を活かし、企画段階から運営まで総合的なコンサルティングを提供します。</p>
                     <div class="service-features">
@@ -446,7 +452,7 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon">🌱</div>
+                    <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
                     <h3>環境配慮設計</h3>
                     <p>持続可能な社会の実現に向け、省エネルギーや環境負荷軽減を考慮した建築設計を提案します。</p>
                     <div class="service-features">

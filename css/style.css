@@ -383,8 +383,16 @@ section {
 }
 
 .service-icon {
-    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
+    color: #2c5f7d;
+}
+
+.service-icon svg {
+    width: 44px;
+    height: 44px;
 }
 
 .service-item h3 {
