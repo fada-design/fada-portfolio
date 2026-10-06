@@ -77,7 +77,7 @@ class ContentLoader {
                 <img class="logo-symbol" src="./images/symbol.png" alt="">
                 <span class="logo-text">
                     <span class="logo-main">株式会社文山建築設計事務所</span>
-                    <span class="logo-sub">FUMIYAMA ARCHITECT'S DESIGN ASSOCIATES</span>
+                    <span class="logo-sub">FUMIYAMA ARCHITECTURE <span class="logo-amp">&amp;</span> DESIGN ASSOCIATES</span>
                 </span>
             </a>
         </div>
@@ -106,7 +106,7 @@ class ContentLoader {
     <div class="footer-content">
         <div class="footer-section">
             <h4>株式会社文山建築設計事務所</h4>
-            <p>FUMIYAMA ARCHITECT'S DESIGN ASSOCIATES</p>
+            <p>FUMIYAMA ARCHITECTURE &amp; DESIGN ASSOCIATES</p>
             <p>〒547-0044<br>大阪市平野区平野本町2-10-4<br>えんだら百歩4C</p>
             <p>TEL: 06-7660-4777</p>
             <p>Email: s1@fada.email</p>
@@ -126,7 +126,7 @@ class ContentLoader {
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2022-2026 FUMIYAMA ARCHITECT'S DESIGN ASSOCIATES. All rights reserved.</p>
+        <p>&copy; 2022-2026 FUMIYAMA ARCHITECTURE &amp; DESIGN ASSOCIATES. All rights reserved.</p>
     </div>
 </footer>`;
     }

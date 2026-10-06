@@ -101,6 +101,10 @@ nav {
     margin-top: 0.15rem;
 }
 
+.logo-amp {
+    color: #4a8fb5;
+}
+
 .nav-links {
     display: flex;
     gap: 2.5rem;
