@@ -66,20 +66,39 @@ nav {
     align-items: center;
 }
 
-.logo-image {
-    height: 50px;
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    text-decoration: none;
+    color: #333;
+}
+
+.logo-symbol {
+    height: 26px;
     width: auto;
+    display: block;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
 }
 
 .logo-main {
-    font-size: 1.1rem;
-    margin-bottom: 0.2rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #2a4a5a;
 }
 
 .logo-sub {
-    font-size: 0.75rem;
-    color: #666;
+    font-size: 0.62rem;
+    color: #777;
     font-weight: 400;
+    letter-spacing: 0.12em;
+    margin-top: 0.15rem;
 }
 
 .nav-links {
@@ -650,9 +669,12 @@ footer {
         position: relative;
     }
     
-    .logo-image {
-        height: 45px;
-        width: auto;
+    .logo-symbol {
+        height: 20px;
+    }
+
+    .logo-link {
+        gap: 0.6rem;
     }
     
     .nav-links {
@@ -733,11 +755,11 @@ footer {
     
     /* ロゴテキストの調整 */
     .logo-main {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
     
     .logo-sub {
-        font-size: 0.7rem;
+        font-size: 0.55rem;
     }
 
     .page-header {
@@ -801,16 +823,17 @@ footer {
         padding: 1rem 1.5rem;
     }
     
-    .logo-image {
-        height: 38px;
+    .logo-symbol {
+        height: 16px;
     }
     
     .logo-main {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.02em;
     }
     
     .logo-sub {
-        font-size: 0.65rem;
+        display: none;
     }
     
     .mobile-menu-toggle {

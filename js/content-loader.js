@@ -73,8 +73,12 @@ class ContentLoader {
         return `<header>
     <nav>
         <div class="logo">
-            <a href="index.html">
-                <img class="logo-image" src="./images/logo.png" alt="株式会社文山建築設計事務所">
+            <a href="index.html" class="logo-link">
+                <img class="logo-symbol" src="./images/symbol.png" alt="">
+                <span class="logo-text">
+                    <span class="logo-main">株式会社文山建築設計事務所</span>
+                    <span class="logo-sub">FUMIYAMA ARCHITECT'S DESIGN ASSOCIATES</span>
+                </span>
             </a>
         </div>
         <button class="mobile-menu-toggle" aria-label="メニュー">
@@ -122,7 +126,7 @@ class ContentLoader {
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2024 FUMIYAMA ARCHITECT'S DESIGN ASSOCIATES. All rights reserved.</p>
+        <p>&copy; 2022-2026 FUMIYAMA ARCHITECT'S DESIGN ASSOCIATES. All rights reserved.</p>
     </div>
 </footer>`;
     }
