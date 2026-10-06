@@ -74,7 +74,7 @@ class ContentLoader {
     <nav>
         <div class="logo">
             <a href="index.html">
-                <img class="logo-image" src="./images/logo.png" alt="文山建築設計事務所">
+                <img class="logo-image" src="./images/logo.png" alt="株式会社文山建築設計事務所">
             </a>
         </div>
         <button class="mobile-menu-toggle" aria-label="メニュー">
@@ -101,7 +101,7 @@ class ContentLoader {
         return `<footer>
     <div class="footer-content">
         <div class="footer-section">
-            <h4>文山建築設計事務所</h4>
+            <h4>株式会社文山建築設計事務所</h4>
             <p>FUMIYAMA ARCHITECT'S DESIGN ASSOCIATES</p>
             <p>〒547-0044<br>大阪市平野区平野本町2-10-4<br>えんだら百歩4C</p>
             <p>TEL: 06-7660-4777</p>
